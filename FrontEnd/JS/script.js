@@ -69,14 +69,12 @@ function deleteImage(imageId) {
             Authorization: `Bearer ${myToken}`,
         },
         success: function (data) {
-            // Supprimez également l'image du DOM si la suppression côté serveur est réussie
             const imageElement = document.getElementById(imageId);
             if (imageElement) {
-                imageElement.parentNode.remove(); // Supprime le parent, c'est-à-dire la figure
+                imageElement.parentNode.remove(); 
             }
         },
         error: function (error) {
-            // Gérez les erreurs de suppression côté serveur
             console.error('Erreur lors de la suppression de l\'image', error);
         }
     });
@@ -246,13 +244,11 @@ function userConnected() {
 userConnected();
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Sélectionnez le bouton modal
+
     var modalBtn = document.querySelector('.btntest');
 
-    // Sélectionnez la modal
     var modal = document.getElementById('modal-container');
 
-    // Sélectionnez le bouton de fermeture de la modal
     var closeModalBtn = document.querySelector('.close-modal');
     var closeModalBtn2 = document.querySelector('.close-modal2');
 
@@ -260,24 +256,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var returnModalBtn = document.querySelector('.return');
 
-    // Ajoutez un écouteur d'événements au bouton modal pour afficher la modal
     modalBtn.addEventListener('click', function () {
         modal.classList.add('active')
         document.body.style.overflow = 'hidden'; // Pour empêcher le défilement de la page lorsque la modal est ouverte
     });
 
-    // Ajoutez un écouteur d'événements au bouton de fermeture de la modal pour la cacher
     closeModalBtn.addEventListener('click', function () {
         modal.classList.remove('active')
-        document.body.style.overflow = 'auto'; // Rétablissez le défilement de la page lorsque la modal est fermée
+        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modal est fermée
     });
 
     closeModalBtn2.addEventListener('click', function () {
         modal.classList.remove('active')
-        document.body.style.overflow = 'auto'; // Rétablissez le défilement de la page lorsque la modal est fermée
+        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modal est fermée
     });
 
-    // Fermez également la modal si l'utilisateur clique en dehors de la modal
+    // Ferme la modale si l'utilisateur clique en dehors de la modale
     window.addEventListener('click', function (event) {
         if (event.target === modal) {
             modal.classList.remove('active')
