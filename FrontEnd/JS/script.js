@@ -48,7 +48,7 @@ async function generateModalImages(){
     for(let work2 of modalimg){
         const projet3 = `<figure class="modal-img">
         <img src="${work2.imageUrl}"  id="${work2.id}" alt="Abajour Tahina">
-        <button class="trash-button">
+        <button class="trash-button" onclick="deleteImage('${work2.id}')">
             <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
         </button>
         </figure>`
@@ -59,35 +59,29 @@ async function generateModalImages(){
 
 generateModalImages()
 
-function deleteImage(imageId) {
-    $.ajax({
-        type: 'DELETE',
-        url: `http://localhost:5678/api/works/${imageId}`,
-        headers: {
-            'Content-Type': 'application/json',
-            accept: '*/*',
-            Authorization: `Bearer ${myToken}`,
-        },
-        success: function (data) {
+async function deleteImage(imageId) {
+    try {
+        const response = await fetch(`http://localhost:5678/api/works/${imageId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                accept: '*/*',
+                Authorization: `Bearer ${myToken}`,
+            },
+        });
+
+        if (response.ok) {
             const imageElement = document.getElementById(imageId);
             if (imageElement) {
                 imageElement.parentNode.remove(); 
             }
-        },
-        error: function (error) {
-            console.error('Erreur lors de la suppression de l\'image', error);
+        } else {
+            console.error('Erreur lors de la suppression de l\'image');
         }
-    });
+    } catch (error) {
+        console.error('Erreur de réseau', error);
+    }
 }
-
-$(function () {
-    $(document).on("click", ".trash-button", function (event) {
-        var imageId = $(this).closest('figure').find('img').attr('id');
-        deleteImage(imageId);
-        event.stopPropagation();
-        return false;
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     const addWorkForm = document.querySelector('.add-workform');
@@ -263,12 +257,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     closeModalBtn.addEventListener('click', function () {
         modal.classList.remove('active')
-        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modal est fermée
+        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modale est fermée
     });
 
     closeModalBtn2.addEventListener('click', function () {
         modal.classList.remove('active')
-        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modal est fermée
+        document.body.style.overflow = 'auto'; // Rétablissement du défilement de la page lorsque la modale est fermée
     });
 
     // Ferme la modale si l'utilisateur clique en dehors de la modale
