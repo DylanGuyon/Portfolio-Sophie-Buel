@@ -281,7 +281,26 @@ footer nav ul {
 	margin: 2em
 }
 
+/* icones */
+.fa-pen-to-square{
+	color: #ffffff;
+}
 
+.fa-pen2{
+	color: #000000;
+}
+
+.fa-xmark{
+	color: #000000;
+}
+
+.fa-arrow-left{
+	color: #000000;
+}
+
+.fa-image{
+	color: #b9c5cc;
+}
 /** Modale **/
 
 .modal{
