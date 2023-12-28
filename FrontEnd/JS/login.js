@@ -19,14 +19,14 @@ async function sendForm(event){
 
         const result = await response.json();
 
-        if(response.status === 200) {
+        if(response.ok) {
             // Enregistre le token dans le local storage
             localStorage.setItem('token', result.token);
             document.location.href="index.html"; 
         }
         
         else {
-            throw new Error("mauvais identifiants");
+            console.error("mauvais identifiants");
         } 
     }
     catch (error) {

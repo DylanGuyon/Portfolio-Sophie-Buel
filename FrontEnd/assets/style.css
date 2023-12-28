@@ -179,7 +179,7 @@ li a:hover {
 	justify-content: center;
 	padding-bottom: 20px;
 }
-.filters-button{
+.btnfilters{
 	display: flex;
     align-items: center;
     justify-content: space-around;
@@ -191,35 +191,12 @@ li a:hover {
 	color: #1D6154;
 	font-size: 16px;
 }
-.filters-button:hover{
-	background-color: #1D6154;
-	color: #ffffff;
-}
-.filters-button:after{
-	background-color: #1D6154;
-	color: #ffffff;
+.btnfilters:hover,
+.btnfilters.active {
+    background-color: #1D6154;
+    color: #ffffff;
 }
 
-.tous-button{
-	display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border: 2px solid #1D6154;
-    border-radius: 32px;
-    cursor: pointer;
-    font-family: 'Syne';
-    padding: 12px 18px;
-	color: #1D6154;
-	font-size: 16px;
-}
-.tous-button:hover{
-	background-color: #1D6154;
-	color: #ffffff;
-}
-.tous-button:after{
-	background-color: #1D6154;
-	color: #ffffff;
-}
 .gallery {
 	width: 100%;
 	display: grid;

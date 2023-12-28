@@ -1,4 +1,4 @@
-async function getWorks(){
+const getWorks = async() => {
     const res = await fetch('http://localhost:5678/api/works');
     const works = await res.json();
 
@@ -41,7 +41,7 @@ async function getWorks(){
 
 getWorks();
 
-async function generateModalImages(){
+const generateModalImages = async() => {
     const res3 = await fetch('http://localhost:5678/api/works');
     const modalimg = await res3.json();
 
@@ -59,7 +59,7 @@ async function generateModalImages(){
 
 generateModalImages()
 
-async function deleteImage(imageId) {
+const deleteImage = async(imageId) => {
     try {
         const response = await fetch(`http://localhost:5678/api/works/${imageId}`, {
             method: 'DELETE',
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-async function generateModalCategories(){
+const generateModalCategories = async() => {
     const res4 = await fetch('http://localhost:5678/api/categories');
     const modalcat = await res4.json();
 
@@ -157,12 +157,12 @@ async function generateModalCategories(){
 
 generateModalCategories()
 
-async function generateButtons(){
+const generateButtons = async() => {
     const res2 = await fetch('http://localhost:5678/api/categories');
     const categories = await res2.json();
 
     for(let category of categories){
-        const projet2 = `<div class="filters-button" id="button-${category.id}">
+        const projet2 = `<div class="filters-button btnfilters" onclick="toggleActive(this)" id="button-${category.id}">
         <p>${category.name}</p>
         </div>`
 
@@ -184,7 +184,15 @@ async function generateButtons(){
     }  
 }
 
-async function filterWorksByCategory(categoryId) {
+function toggleActive(button) {
+    var buttons = document.querySelectorAll('.btnfilters');
+    buttons.forEach(function (btn) {
+        btn.classList.remove('active');
+    });
+    button.classList.add('active');
+}
+
+const filterWorksByCategory = async(categoryId) => {
     const res = await fetch('http://localhost:5678/api/works');
     const works = await res.json();
 
